@@ -4,7 +4,7 @@
   "description": "Centralized API user platform for Hackathons",
   "main": "production.js",
   "scripts": {
-    "setup": "node ./setup/install.js",
+    "setup": "node ./setup/init.js",
     "test": "mocha",
     "start": "node production.js",
     "dev": "node development.js"

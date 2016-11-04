@@ -27,20 +27,21 @@ let Database_Names = Database_Names_List[mode]; // default
 
 // export modules for testing
 module.exports = function() {
-    this.installerPackage = installerPackage;
-    this.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
-    this.askUserForUsername = askUserForUsername;
-    this.askUserForPassword = askUserForPassword;
-    this.confirmUserPassword = confirmUserPassword;
-    this.askHackathonName = askHackathonName;
-    this.installServerSoftware = installServerSoftware;
-    this.clearDB = clearDB;
-    this.installFailed = installFailed;
-    this.doneInstall = doneInstall;
-    this.setMode = setMode;
-    this.echo = function(){
-      console.log("Alive");
-    }
+  this.startInstall = startInstall;
+  this.installerPackage = installerPackage;
+  this.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
+  this.askUserForUsername = askUserForUsername;
+  this.askUserForPassword = askUserForPassword;
+  this.confirmUserPassword = confirmUserPassword;
+  this.askHackathonName = askHackathonName;
+  this.installServerSoftware = installServerSoftware;
+  this.clearDB = clearDB;
+  this.installFailed = installFailed;
+  this.doneInstall = doneInstall;
+  this.setMode = setMode;
+  this.echo = function(){
+    console.log("Alive");
+  }
 }
 
 // class defined
