@@ -11,14 +11,49 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 const request = require('request');
 const dotenv = require('dotenv');
+const Database = require('arangojs').Database;
 
+
+class Hackathon{
+  constructor(name, capacity){
+    try {
+
+      this.name = name;
+      this.capacity = capacity;
+
+    } catch(e) {
+      new Error("");
+    }
+  }
+}
+
+function setUpDatabases(){
+  const db = new Database(process.env.DB_URI);
+        db.useDatabase('tomoe');
+
+  let d = {
+          Attendees: db.collection('attendees'),
+          Hackathons: db.collection('hackathons'),
+          Companies: db.collection('companies'),
+          CompanyUsers: db.collection('company_users'),
+        }
+
+  const hackathon_key = 0; // always the first document
+
+  collection.lookupByKeys(hackathon_key)
+    .then((data) => {
+      d.Hackathon = data[0];
+      return d;
+    });
+}
 
 module.exports = function(status){
 
   // load environmental vars
   dotenv.load();
 
-
+  // set up new db
+  db = setUpDatabases();
 
   // set base directory as one above
   __dirname = __dirname + "/..";
