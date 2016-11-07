@@ -25,32 +25,14 @@ const Database_Names_List = {
 let Database_Names = Database_Names_List[mode]; // default
 
 
-// export modules for testing
-module.exports = function() {
-  this.startInstall = startInstall;
-  this.installerPackage = installerPackage;
-  this.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
-  this.askUserForUsername = askUserForUsername;
-  this.askUserForPassword = askUserForPassword;
-  this.confirmUserPassword = confirmUserPassword;
-  this.askHackathonName = askHackathonName;
-  this.installServerSoftware = installServerSoftware;
-  this.clearDB = clearDB;
-  this.installFailed = installFailed;
-  this.doneInstall = doneInstall;
-  this.setMode = setMode;
-  this.echo = function(){
-    console.log("Alive");
-  }
-}
 
 // class defined
 class installerPackage{
   constructor(username){
     this.username = username;
-    this.password = NULL;
-    this.temp_password = NULL;
-    this.hackathon_name = NULL;
+    this.password = null;
+    this.temp_password = null;
+    this.hackathon_name = null;
   }
 
   addTempPassword(temp_password){
@@ -58,10 +40,14 @@ class installerPackage{
   }
 
   addPassword(password){
-    utilities.saltAndHash(password, function(salt_pass){
-      this.password = salt_pass;
-      this.temp_password = NULL;
-    })
+    let that = this;
+
+
+    let new_pass = utilities.generate.saltAndHash(password);
+
+    this.password = new_pass;
+    this.temp_password = null;
+
   }
 
   // so we can set up the hackathon in the meta-db so we can refer to it later
@@ -307,4 +293,22 @@ function doneInstall(){
       console.log(`Tomoe Server v${package.version} installed for ${mode}, type\n ${runType} \n to use the server in ${mode} mode. \n\n REMINDER: You will need to run this installer again to set up a ${notMode} version of this server!`);
     }
   });
+}
+
+
+// export modules for testing
+exports.startInstall = startInstall;
+exports.installerPackage = installerPackage;
+exports.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
+exports.askUserForUsername = askUserForUsername;
+exports.askUserForPassword = askUserForPassword;
+exports.confirmUserPassword = confirmUserPassword;
+exports.askHackathonName = askHackathonName;
+exports.installServerSoftware = installServerSoftware;
+exports.clearDB = clearDB;
+exports.installFailed = installFailed;
+exports.doneInstall = doneInstall;
+exports.setMode = setMode;
+exports.getDatabaseNames = function(){
+  return Database_Names;
 }
