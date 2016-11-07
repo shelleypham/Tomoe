@@ -3,6 +3,7 @@ const utilities = require('../api/tools/util.js');
 const async = require('async');
 const default_db_uri = "http://127.0.0.1:8529";
 const Database = require('arangojs').Database;
+const admin = require('../api/tools/users.js');
 const package = require('../package.json');
 let mode = "test"; // defaults to dev enironment
 let db; // database as a clobal variable
@@ -27,27 +28,15 @@ let Database_Names = Database_Names_List[mode]; // default
 
 
 // class defined
-class installerPackage{
+class installerPackage extends admin{
   constructor(username){
-    this.username = username;
-    this.password = null;
-    this.temp_password = null;
+    super(username);
+
     this.hackathon_name = null;
   }
 
   addTempPassword(temp_password){
     this.temp_password = temp_password;
-  }
-
-  addPassword(password){
-    let that = this;
-
-
-    let new_pass = utilities.generate.saltAndHash(password);
-
-    this.password = new_pass;
-    this.temp_password = null;
-
   }
 
   // so we can set up the hackathon in the meta-db so we can refer to it later
@@ -61,14 +50,6 @@ class installerPackage{
       password:this.password,
       hackathon_name:this.hackathon_name,
       temp_password:this.temp_password,
-    }
-  }
-
-  assignUser(){
-    return {
-      _key:utilities.createKey([4,6,3]),
-      username:this.username,
-      password:this.password,
     }
   }
 }
@@ -158,7 +139,7 @@ function confirmUserPassword(pack){
   let confirm_password = readlineSync.questionNewPassword(`\nPlease re-enter your password to verify.\n`);
   if(pack.returnInstaller().temp_password === confirm_password){
 
-    pack.addPassword(confirm_password);
+    pack.setPassword(confirm_password);
 
     askHackathonName(pack);
   } else {
@@ -197,16 +178,12 @@ function installServerSoftware(pack){
       users.create().then(
         () => {
           // create admin files
-          const user = pack.assignUser();
-          users.save(user).then(
-            meta => {
-              hackathonInstaller(pack);
-            },
-            err => {
-              console.error('Failed to save document:', err)
-              installFailed();
-            }
-          );
+          pack.save(users, function(){
+            hackathonInstaller(pack);
+          }, function(err){
+            console.error('Failed to save document:', err)
+            installFailed();
+          });
 
 
         },
