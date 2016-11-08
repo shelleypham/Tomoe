@@ -68,6 +68,7 @@ The Hacker Object is the core to Tomoe's hackathon management system. Hackers ar
  "name":"user-name",
  "email":"hackathon@email.com",
  "password":"userpasswordhash", // not returned normally
+ "status":"applied", // applied, denied, approved, waitlisted
  "survey":{
     ... // array of attributes that can be customized and sent to the user
  }
