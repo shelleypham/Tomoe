@@ -28,6 +28,9 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 **[⬆ back to top](#table-of-contents)**
 
 ## Documentation
+### Shortcuts
+[**<code>GET</code> /hackers/{user-email}**](#get-hackers)<br>
+
 ### The Hacker Object
 The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon. 
 ```javascript
@@ -42,7 +45,7 @@ The Hacker Object is the core to Tomoe's hackathon management system. Hackers ar
 }
 ```
 
-**<code>GET</code> /hackers**<br>
+####<code>GET</code> /hackers<br>
 Lists all hackers stored in your database
 
 #### Parameters
@@ -232,16 +235,20 @@ DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
  
 ## Contributing
 Want to contribute to Tomoe? We would love if you were to contribute to the continued growth of our project. Just submit a branch request - if you're a UC Merced student, please [contact us](shub@hackmerced.com)! We're still looking to add developers to our mentorship program too!
+<br>
 **[⬆ back to top](#table-of-contents)**
 
 
 ### Install
 Install 
+<br>
 **[⬆ back to top](#table-of-contents)**
 
 ## Support
 The HackMerced Team is happy to help Hackathon organizers with setting up and configuring the 
+<br>
 **[⬆ back to top](#table-of-contents)**
 
 ## License
+<br>
 **[⬆ back to top](#table-of-contents)**
