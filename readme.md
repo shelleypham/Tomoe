@@ -31,9 +31,13 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 ### Shortcuts
 [**Hacker Object**](#the-hacker-object)<br>
 [**<code>GET</code> /hackers**](#get-hackers)<br>
-[**<code>GET</code> /hackers/{user-email}**](#get-hackers-user-email)<br>
-[**<code>GET</code> /hackers/{user-id}**](#get-hackers)<br>
-[**<code>GET</code> /hackers/{user-email}**](#get-hackers)<br>
+[**<code>GET</code> /hackers/{user-email}**](#get-hackersuser-email)<br>
+[**<code>GET</code> /hackers/{user-id}**](#get-hackersuser-id)<br>
+[**<code>POST</code> /hackers**](#post-hackers)<br>
+[**<code>POST</code> /hackers/{user-email}**](#post-hackersuser-email)<br>
+[**<code>POST</code> /hackers/{user-id}**](#post-hackersuser-id)<br>
+[**<code>DELETE</code> /hackers/{user-email}**](#delete-hackersuser-email)<br>
+[**<code>DELETE</code> /hackers/{user-id}**](#delete-hackersuser-id)<br>
 
 ### The Hacker Object
 The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon. 
