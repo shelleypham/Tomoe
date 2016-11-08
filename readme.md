@@ -52,7 +52,9 @@ The Hacker Object is the core to Tomoe's hackathon management system. Hackers ar
  }
 }
 ```
-
+<br>
+**[⬆ back to top](#table-of-contents)**
+**- [back to documentation](#documentation)**
 ####<code>GET</code> /hackers<br>
 Lists all hackers stored in your database
 
