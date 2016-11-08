@@ -255,7 +255,7 @@ Install
 **[⬆ back to top](#table-of-contents)**
 
 ## Support
-The HackMerced Team is happy to help Hackathon organizers with setting up and configuring the
+The HackMerced Team is happy to help Hackathon organizers with setting up and configuring your application. Email us at [help@hackmerced.com](help@hackmerced.com).
 <br>
 **[⬆ back to top](#table-of-contents)**
 
