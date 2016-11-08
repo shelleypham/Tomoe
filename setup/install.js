@@ -29,8 +29,8 @@ let Database_Names = Database_Names_List[mode]; // default
 
 // class defined
 class installerPackage extends admin{
-  constructor(username){
-    super(username);
+  constructor(email){
+    super({email:email, rank:"all"});
 
     this.hackathon_name = null;
   }
@@ -46,7 +46,7 @@ class installerPackage extends admin{
 
   returnInstaller(){
     return {
-      username:this.username,
+      email:this.email,
       password:this.password,
       hackathon_name:this.hackathon_name,
       temp_password:this.temp_password,
@@ -99,33 +99,33 @@ function checkIfTomoeInstanceInstalled(){
         let ans = readlineSync.question(`There already seems to be an instance of Tomoe installed - do you want to drop your databases and start a new server?\n (y/n):`);
         if(ans === "y"){
           clearDB(() => {
-            askUserForUsername();
+            askUserForEmail();
           });
         } else {
           console.log("Ended installer file");
         }
       } else {
-        askUserForUsername(); // create user then actually create database
+        askUserForEmail(); // create user then actually create database
       }
   });
 }
 
 
-function askUserForUsername(){
-  let username = readlineSync.question(`We will now create an account for the admin panel, please select a username.\n`);
-
-  if(username){
-    let pack = new installerPackage(username);
+function askUserForEmail(){
+  let email = readlineSync.question(`We will now create an account for the admin panel, please enter your email address.\n`);
+  let valid_email = utilities.validate.email(email);
+  if(valid_email){
+    let pack = new installerPackage(email);
 
     askUserForPassword(pack);
   } else {
-    console.log(`Please enter a valid username!\n`);
-    askUserForUsername();
+    console.log(`Please enter a valid email!\n`);
+    askUserForEmail();
   }
 }
 
 function askUserForPassword(pack){
-  let password = readlineSync.questionNewPassword(`Please enter a password for the account: ${username}.\n`);
+  let password = readlineSync.questionNewPassword(`Please enter a password for the account: ${email}.\n`);
   if(password){
     pack.addTempPassword(password);
     confirmUserPassword(pack);
@@ -277,7 +277,7 @@ function doneInstall(){
 exports.startInstall = startInstall;
 exports.installerPackage = installerPackage;
 exports.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
-exports.askUserForUsername = askUserForUsername;
+exports.askUserForEmail = askUserForEmail;
 exports.askUserForPassword = askUserForPassword;
 exports.confirmUserPassword = confirmUserPassword;
 exports.askHackathonName = askHackathonName;
