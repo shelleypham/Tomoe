@@ -117,7 +117,7 @@ Array [
 
 **<code>GET</code> /hackers/{user-email}**<br>
 **<code>GET</code> /hackers/{user-id}**<br>
-Returns a particular hackathon hacker, requires one of the following parameters
+Returns a particular hackathon hacker, requires one of the previous parameters
 
 #### Example
 ```
@@ -168,10 +168,40 @@ BODY: {
 }
 ```
 
+**<code>POST</code> /hackers/{user-email}**<br>
+**<code>POST</code> /hackers/{user-id}**<br>
+Updates a particular hackathon hacker, requires one of the previous parameters
+
+#### Example
+```
+GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
+```
+```
+CONTENT-TYPE: application/json
+BODY: {
+ "name":"Shubham D Naik",
+ "survey":{
+  "age":20,
+ }
+}
+```
+
+##### Response
+```js
+{
+ "_id":"349mei8234",
+ "name":"Shubham D Naik",
+ "email":"john@ucmerced.edu",
+ "survey":{
+  "age":19,
+  "college_origin":"University of California-Merced"
+ }
+}
+```
 
 **<code>DELETE</code> /hackers/{user-email}**<br>
 **<code>DELETE</code> /hackers/{user-id}**<br>
-Deletes a particular hackathon hacker, requires one of the following parameters
+Deletes a particular hackathon hacker, requires one of the previous parameters
 
 #### Example
 ```
