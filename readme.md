@@ -1,6 +1,6 @@
 , <img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
 # Hackathon Application Management API
-Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor thier applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this december.
+Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor their applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this December.
 
 [Website](http://tomoe.hackmerced.com) |
 [Docs](http://tomoe.hackmerced.com/docs) |
@@ -22,8 +22,8 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 
 # Features
 
-- **API**: Tomoe is primarily an API that allows you to build your own UI and interfaces around
-- **Application Manager**: Manage students who apply to your hackathon by approving, denying, generating qr codes for hackers.
+- **API**: Tomoe is primarily an API that allows you to build your own UI and interfaces around our platform.
+- **Application Manager**: Manage students who apply to your hackathon by approving, denying, generating QR codes for hackers.
 - **Email Utility**: Tomoe works with SendGrid to send application statuses, important updates, and other information to hackers.
 
 <br>
@@ -32,7 +32,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 # Installation
 Tomoe's runs on top of node.js and requires you to install `node.js`, `arangodb`, and `npm`
 
-Once you've installed the prerequistes you will need to run the following command to install your Tomoe instance. It will ask you a few questions and set up either a development or live environment as well as an admin account for the gui.
+Once you've installed the prerequistes you will need to run the following command to install your Tomoe instance. It will ask you a few questions and set up either a development or live environment as well as an admin account for the GUI.
 
 ```terminal
 npm install
@@ -218,7 +218,7 @@ Updates a particular hackathon hacker, requires one of the previous parameters
 
 #### Example
 ```
-GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
+GET https://{your-tomoe-server}/v1.0/hackers/snaik3@ucmerced.edu
 ```
 ```
 CONTENT-TYPE: application/json
@@ -235,7 +235,7 @@ BODY: {
 {
  "_id":"349mei8234",
  "name":"Shubham D Naik",
- "email":"john@ucmerced.edu",
+ "email":"snaik3@ucmerced.edu",
  "survey":{
   "age":19,
   "college_origin":"University of California-Merced"
