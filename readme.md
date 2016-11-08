@@ -1,2 +1,3 @@
-![Tomoe](/assets/images/logos/logo_blue.png|width=100)
-##
+## Hackathon Application Management API
+<img src="/assets/images/logos/logo_blue.png" alt="Tomoe" >
+
