@@ -38,6 +38,16 @@ const util = {
       }
 
     },
+    email:function(email, resolve){
+      let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  		let truth = re.test(e);
+
+      if(resolve){
+        resolve(truth);
+      } else {
+        return truth;
+      }
+    }
   },
   generate:{
     saltAndHash:function(pass, resolve){
