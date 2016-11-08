@@ -29,6 +29,10 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 
 ## Documentation
 ### Shortcuts
+[**Hacker Object**](#the-hacker-object)<br>
+[**<code>GET</code> /hackers**](#get-hackers)<br>
+[**<code>GET</code> /hackers/{user-email}**](#get-hackers-user-email)<br>
+[**<code>GET</code> /hackers/{user-id}**](#get-hackers)<br>
 [**<code>GET</code> /hackers/{user-email}**](#get-hackers)<br>
 
 ### The Hacker Object
@@ -48,7 +52,7 @@ The Hacker Object is the core to Tomoe's hackathon management system. Hackers ar
 ####<code>GET</code> /hackers<br>
 Lists all hackers stored in your database
 
-#### Parameters
+##### Parameters
 * <code>survey.data.{option}={any-data}</code> <br>**optional** : will filter the hackers returned based on a particular survey data
 <br><br>
 * <code>survey.lte.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options that are less than the entered value
@@ -60,12 +64,12 @@ Lists all hackers stored in your database
 * <code>survey.rangemax.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the max value
 
 
-#### Example 1
+##### Example 1
 ```
 GET https://{your-tomoe-server}/v1.0/hackers
 ```
 
-##### Response
+###### Response
 ```js
 Array [
  {
@@ -90,11 +94,11 @@ Array [
 ]
 ```
 
-#### Example 2
+##### Example 2
 ```
 GET https://{your-tomoe-server}/v1.0/hackers?survey.rangemin.age=22&survey.rangemax.age=25&survey.data.college_origin=University of California-Merced
 ```
-##### Response
+###### Response
 ```js
 Array [
  {
@@ -122,16 +126,16 @@ Array [
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-**<code>GET</code> /hackers/{user-email}**<br>
-**<code>GET</code> /hackers/{user-id}**<br>
+####<code>GET</code> /hackers/{user-email}
+####<code>GET</code> /hackers/{user-id}
 Returns a particular hackathon hacker, requires one of the previous parameters
 
-#### Example
+##### Example
 ```
 GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
 
-##### Response
+###### Response
 ```js
 {
  "_id":"349mei8234",
@@ -147,9 +151,9 @@ GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-**<code>POST</code> /hackers**<br>
+####<code>POST</code> /hackers
 Creates a hacker user
-#### Example
+##### Example
 ```
 POST https://{your-tomoe-server}/v1.0/hackers
 ```
@@ -165,7 +169,7 @@ BODY: {
 }
 ```
 
-##### Response
+###### Response
 ```js
 {
  "_id":"5340424",
@@ -181,11 +185,11 @@ BODY: {
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-**<code>POST</code> /hackers/{user-email}**<br>
-**<code>POST</code> /hackers/{user-id}**<br>
+####<code>POST</code> /hackers/{user-email}
+####<code>POST</code> /hackers/{user-id}
 Updates a particular hackathon hacker, requires one of the previous parameters
 
-#### Example
+##### Example
 ```
 GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
@@ -199,7 +203,7 @@ BODY: {
 }
 ```
 
-##### Response
+###### Response
 ```js
 {
  "_id":"349mei8234",
@@ -215,16 +219,16 @@ BODY: {
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-**<code>DELETE</code> /hackers/{user-email}**<br>
-**<code>DELETE</code> /hackers/{user-id}**<br>
+####<code>DELETE</code> /hackers/{user-email}
+####<code>DELETE</code> /hackers/{user-id}
 Deletes a particular hackathon hacker, requires one of the previous parameters
 
-#### Example
+##### Example
 ```
 DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
 
-##### Response
+###### Response
 ```js
 { deleted: true }
 ```
