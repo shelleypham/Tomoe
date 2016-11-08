@@ -25,7 +25,8 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 - **API**: Tomoe is primarily an API that allows you to build your own UI and interfaces around
 - **Application Manager**: Manage students who apply to your hackathon by approving, denying, generating qr codes for hackers.
 - **Email Utility**: Tomoe works with SendGrid to send application statuses, important updates, and other information to hackers.
- <br>
+
+<br>
 **[⬆ back to top](#table-of-contents)**
 
 # Installation
@@ -42,7 +43,6 @@ Access the server and gui locally at:
 ```terminal
 http://localhost:4925
 ```
-
  <br>
 **[⬆ back to top](#table-of-contents)**
 
@@ -57,6 +57,8 @@ http://localhost:4925
 [**<code>POST</code> /hackers/{user-id}**](#post-hackersuser-id)<br>
 [**<code>DELETE</code> /hackers/{user-email}**](#delete-hackersuser-email)<br>
 [**<code>DELETE</code> /hackers/{user-id}**](#delete-hackersuser-id)<br>
+ <br>
+**[⬆ back to top](#table-of-contents)**
 
 ## The Hacker Object
 The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon.
@@ -87,7 +89,6 @@ Lists all hackers stored in your database
 * <code>survey.rangemin.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the min value
 <br><br>
 * <code>survey.rangemax.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the max value
-
 
 #### Example 1
 ```
