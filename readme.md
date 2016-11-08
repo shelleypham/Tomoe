@@ -1,13 +1,13 @@
 <img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
 ## Hackathon Application Management API
-Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor thier applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this december. 
+Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor thier applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this december.
 
 [Website](http://tomoe.hackmerced.com) |
 [Docs](http://tomoe.hackmerced.com/docs) |
 [Installation](http://tomoe.hackmerced.com/install) |
 [HackMerced](http://hackmerced.com) |
 [Sponsor Us!](http://hackmerced.com/sponsor) |
-[Blog](https://blog.hackmerced.com/) 
+[Blog](https://blog.hackmerced.com/)
 
 ## Table of Contents
 
@@ -40,7 +40,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 [**<code>DELETE</code> /hackers/{user-id}**](#delete-hackersuser-id)<br>
 
 ### The Hacker Object
-The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon. 
+The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon.
 ```javascript
 {
  "_id":"user-id",
@@ -242,7 +242,7 @@ DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
- 
+
 ## Contributing
 Want to contribute to Tomoe? We would love if you were to contribute to the continued growth of our project. Just submit a branch request - if you're a UC Merced student, please [contact us](shub@hackmerced.com)! We're still looking to add developers to our mentorship program too!
 <br>
@@ -250,15 +250,30 @@ Want to contribute to Tomoe? We would love if you were to contribute to the cont
 
 
 ### Install
-Install 
+Install
 <br>
 **[⬆ back to top](#table-of-contents)**
 
 ## Support
-The HackMerced Team is happy to help Hackathon organizers with setting up and configuring the 
+The HackMerced Team is happy to help Hackathon organizers with setting up and configuring the
 <br>
 **[⬆ back to top](#table-of-contents)**
 
 ## License
+```
+Copyright 2016 HackMerced
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 <br>
 **[⬆ back to top](#table-of-contents)**
