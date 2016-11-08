@@ -1,4 +1,4 @@
-<img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
+, <img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
 # Hackathon Application Management API
 Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor thier applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this december.
 
@@ -30,7 +30,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 **[⬆ back to top](#table-of-contents)**
 
 # Installation
-Tomoe's runs on top of node.js and requires you to install `node.js` and `npm`
+Tomoe's runs on top of node.js and requires you to install `node.js`, `arangodb`, and `npm`
 
 Once you've installed the prerequistes you will need to run the following command to install your Tomoe instance. It will ask you a few questions and set up either a development or live environment as well as an admin account for the gui.
 
