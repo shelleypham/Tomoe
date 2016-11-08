@@ -1,4 +1,4 @@
-, <img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
+<img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
 # Hackathon Application Management API
 Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor their applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this December.
 
