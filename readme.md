@@ -246,8 +246,8 @@ BODY: {
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-####<code>DELETE</code> /hackers/{user-email}
-####<code>DELETE</code> /hackers/{user-id}
+###<code>DELETE</code> /hackers/{user-email}
+###<code>DELETE</code> /hackers/{user-id}
 Deletes a particular hackathon hacker, requires one of the previous parameters
 
 #### Example
