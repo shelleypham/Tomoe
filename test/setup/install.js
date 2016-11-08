@@ -1,6 +1,5 @@
 // Test if database installs properly
 const install = require("../../setup/install.js");
-const assert = require('assert');
 const utilities = require("../../api/tools/util.js");
 
 module.exports = function(assert, request, should){
