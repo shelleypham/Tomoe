@@ -145,17 +145,19 @@ class admin extends user{
 class hacker extends user{
   constructor(user_package){
     super(user_package.email)
-    this.survery = user_package.survery;
+    this.survey = user_package.survey;
   }
 }
 
 class staff extends user{
   constructor(user_package){
     super(user_package.email)
-    this.survery = user_package.survery;
+    this.survey = user_package.survey;
   }
 }
 
 
 
 exports.admin = admin;
+exports.staff = staff;
+exports.hacker = hacker;
