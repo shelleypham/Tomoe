@@ -265,6 +265,7 @@ DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 
 # Contributing
 Want to contribute to Tomoe? We would love if you were to contribute to the continued growth of our project. Just submit a branch request - if you're a UC Merced student, please [contact us](shub@hackmerced.com)! We're still looking to add developers to our mentorship program too!
+
 <br>
 **[⬆ back to top](#table-of-contents)**
 
@@ -273,6 +274,7 @@ Want to contribute to Tomoe? We would love if you were to contribute to the cont
 
 # Support
 The HackMerced Team is happy to help Hackathon organizers with setting up and configuring your application. Email us at [help@hackmerced.com](help@hackmerced.com).
+
 <br>
 **[⬆ back to top](#table-of-contents)**
 
