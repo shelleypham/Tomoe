@@ -1,5 +1,5 @@
 <img src="/assets/images/logos/logo_blue.png" alt="Tomoe" width=250 >
-## Hackathon Application Management API
+# Hackathon Application Management API
 Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor thier applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this december.
 
 [Website](http://tomoe.hackmerced.com) |
@@ -9,9 +9,10 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 [Sponsor Us!](http://hackmerced.com/sponsor) |
 [Blog](https://blog.hackmerced.com/)
 
-## Table of Contents
+# Table of Contents
 
 - [**Features**](#features)
+- [**Installation**](#installation)
 - [**Documentation**](#features)
 - [**Resources and Tools**](#resources-and-tools)
 - [**Roadmap**](#roadmap)
@@ -19,7 +20,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 - [**Support**](#support)
 - [**License**](#license)
 
-## Features
+# Features
 
 - **API**: Tomoe is primarily an API that allows you to build your own UI and interfaces around
 - **Application Manager**: Manage students who apply to your hackathon by approving, denying, generating qr codes for hackers.
@@ -27,8 +28,26 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
  <br>
 **[⬆ back to top](#table-of-contents)**
 
-## Documentation
-### Shortcuts
+# Installation
+Tomoe's runs on top of node.js and requires you to install `node.js` and `npm`
+
+Once you've installed the prerequistes you will need to run the following command to install your Tomoe instance. It will ask you a few questions and set up either a development or live environment as well as an admin account for the gui.
+
+```terminal
+npm install
+npm run setup
+```
+
+Access the server and gui locally at:
+```terminal
+http://localhost:4925
+```
+
+ <br>
+**[⬆ back to top](#table-of-contents)**
+
+# Documentation
+## Shortcuts
 [**Hacker Object**](#the-hacker-object)<br>
 [**<code>GET</code> /hackers**](#get-hackers)<br>
 [**<code>GET</code> /hackers/{user-email}**](#get-hackersuser-email)<br>
@@ -39,7 +58,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 [**<code>DELETE</code> /hackers/{user-email}**](#delete-hackersuser-email)<br>
 [**<code>DELETE</code> /hackers/{user-id}**](#delete-hackersuser-id)<br>
 
-### The Hacker Object
+## The Hacker Object
 The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon.
 ```javascript
 {
@@ -55,10 +74,10 @@ The Hacker Object is the core to Tomoe's hackathon management system. Hackers ar
 <br>
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
-####<code>GET</code> /hackers<br>
+###<code>GET</code> /hackers<br>
 Lists all hackers stored in your database
 
-##### Parameters
+#### Parameters
 * <code>survey.data.{option}={any-data}</code> <br>**optional** : will filter the hackers returned based on a particular survey data
 <br><br>
 * <code>survey.lte.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options that are less than the entered value
@@ -70,12 +89,12 @@ Lists all hackers stored in your database
 * <code>survey.rangemax.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the max value
 
 
-##### Example 1
+#### Example 1
 ```
 GET https://{your-tomoe-server}/v1.0/hackers
 ```
 
-###### Response
+##### Response
 ```js
 Array [
  {
@@ -100,11 +119,11 @@ Array [
 ]
 ```
 
-##### Example 2
+#### Example 2
 ```
 GET https://{your-tomoe-server}/v1.0/hackers?survey.rangemin.age=22&survey.rangemax.age=25&survey.data.college_origin=University of California-Merced
 ```
-###### Response
+##### Response
 ```js
 Array [
  {
@@ -132,16 +151,16 @@ Array [
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-####<code>GET</code> /hackers/{user-email}
-####<code>GET</code> /hackers/{user-id}
+###<code>GET</code> /hackers/{user-email}
+###<code>GET</code> /hackers/{user-id}
 Returns a particular hackathon hacker, requires one of the previous parameters
 
-##### Example
+#### Example
 ```
 GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
 
-###### Response
+##### Response
 ```js
 {
  "_id":"349mei8234",
@@ -157,9 +176,9 @@ GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-####<code>POST</code> /hackers
+###<code>POST</code> /hackers
 Creates a hacker user
-##### Example
+#### Example
 ```
 POST https://{your-tomoe-server}/v1.0/hackers
 ```
@@ -175,7 +194,7 @@ BODY: {
 }
 ```
 
-###### Response
+##### Response
 ```js
 {
  "_id":"5340424",
@@ -191,11 +210,11 @@ BODY: {
 **[⬆ back to top](#table-of-contents)**
 **- [back to documentation](#documentation)**
 
-####<code>POST</code> /hackers/{user-email}
-####<code>POST</code> /hackers/{user-id}
+###<code>POST</code> /hackers/{user-email}
+###<code>POST</code> /hackers/{user-id}
 Updates a particular hackathon hacker, requires one of the previous parameters
 
-##### Example
+#### Example
 ```
 GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
@@ -209,7 +228,7 @@ BODY: {
 }
 ```
 
-###### Response
+##### Response
 ```js
 {
  "_id":"349mei8234",
@@ -229,12 +248,12 @@ BODY: {
 ####<code>DELETE</code> /hackers/{user-id}
 Deletes a particular hackathon hacker, requires one of the previous parameters
 
-##### Example
+#### Example
 ```
 DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 ```
 
-###### Response
+##### Response
 ```js
 { deleted: true }
 ```
@@ -243,23 +262,20 @@ DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
 **- [back to documentation](#documentation)**
 
 
-## Contributing
+# Contributing
 Want to contribute to Tomoe? We would love if you were to contribute to the continued growth of our project. Just submit a branch request - if you're a UC Merced student, please [contact us](shub@hackmerced.com)! We're still looking to add developers to our mentorship program too!
 <br>
 **[⬆ back to top](#table-of-contents)**
 
 
-### Install
-Install
-<br>
-**[⬆ back to top](#table-of-contents)**
 
-## Support
+
+# Support
 The HackMerced Team is happy to help Hackathon organizers with setting up and configuring your application. Email us at [help@hackmerced.com](help@hackmerced.com).
 <br>
 **[⬆ back to top](#table-of-contents)**
 
-## License
+# License
 ```
 Copyright 2016 HackMerced
 
