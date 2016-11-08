@@ -1,2 +1,2 @@
-![Tomoe](/assets/images/logos/logo_blue.png)
+![Tomoe](/assets/images/logos/logo_blue.png|width=100)
 ##
