@@ -26,6 +26,162 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 - **Email Utility**: Tomoe works with SendGrid to send application statuses, important updates, and other information to hackers.
  
 ## Documentation
+### The Hacker Object
+The Hacker Object is the core to Tomoe's hackathon management system. Hackers are the people who apply to your hackathon. 
+```javascript
+{
+ "_id":"user-id",
+ "name":"user-name",
+ "email":"hackathon@email.com",
+ "password":"userpasswordhash", // not returned normally
+ "survey":{
+    ... // array of attributes that can be customized and sent to the user
+ }
+}
+```
+
+**<code>GET</code> /hackers**<br>
+Lists all hackers stored in your database
+
+#### Parameters
+* <code>survey.data.{option}={any-data}</code> <br>**optional** : will filter the hackers returned based on a particular survey data
+<br><br>
+* <code>survey.lte.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options that are less than the entered value
+<br><br>
+* <code>survey.gte.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options that are greater than the entered value
+<br><br>
+* <code>survey.rangemin.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the min value
+<br><br>
+* <code>survey.rangemax.{option}={numeric-data}</code> <br>**optional** : will filter for a range of options, sets the max value
+
+
+#### Example 1
+```
+GET https://{your-tomoe-server}/v1.0/hackers
+```
+
+##### Response
+```js
+Array [
+ {
+  "_id":"349mei8234",
+  "name":"John Mallon",
+  "email":"john@ucmerced.edu",
+  "survey":{
+   "age":22,
+   "college_origin":"University of California-Merced"
+  }
+ },
+ ...
+ {
+  "_id":"934554",
+  "name":"Bob Brown",
+  "email":"bbrown@ucmerced.edu",
+  "survey":{
+   "age":18,
+   "college_origin":"University of California-Los Angeles"
+  }
+ },
+]
+```
+
+#### Example 2
+```
+GET https://{your-tomoe-server}/v1.0/hackers?survey.rangemin.age=22&survey.rangemax.age=25&survey.data.college_origin=University of California-Merced
+```
+##### Response
+```js
+Array [
+ {
+  "_id":"349mei8234",
+  "name":"John Mallon",
+  "email":"john@ucmerced.edu",
+  "survey":{
+   "age":22,
+   "college_origin":"University of California-Merced"
+  }
+ },
+ ...
+ {
+  "_id":"934554",
+  "name":"Karl Korn",
+  "email":"kkorn@ucmerced.edu",
+  "survey":{
+   "age":25,
+   "college_origin":"University of California-Merced"
+  }
+ },
+]
+```
+
+
+**<code>GET</code> /hackers/{user-email}**<br>
+**<code>GET</code> /hackers/{user-id}**<br>
+Returns a particular hackathon hacker, requires one of the following parameters
+
+#### Example
+```
+GET https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
+```
+
+##### Response
+```js
+{
+ "_id":"349mei8234",
+ "name":"John Mallon",
+ "email":"john@ucmerced.edu",
+ "survey":{
+  "age":22,
+  "college_origin":"University of California-Merced"
+ }
+}
+```
+
+**<code>POST</code> /hackers**<br>
+Creates a hacker user
+#### Example
+```
+POST https://{your-tomoe-server}/v1.0/hackers
+```
+```
+CONTENT-TYPE: application/json
+BODY: {
+ "name":"Shubham Naik",
+ "email":"snaik3@ucmerced.edu",
+ "survey":{
+  "age":19,
+  "college_origin":"University of California-Merced"
+ }
+}
+```
+
+##### Response
+```js
+{
+ "_id":"5340424",
+ "name":"Shubham Naik",
+ "email":"snaik3@ucmerced.edu",
+ "survey":{
+  "age":19,
+  "college_origin":"University of California-Merced"
+ }
+}
+```
+
+
+**<code>DELETE</code> /hackers/{user-email}**<br>
+**<code>DELETE</code> /hackers/{user-id}**<br>
+Deletes a particular hackathon hacker, requires one of the following parameters
+
+#### Example
+```
+DELETE https://{your-tomoe-server}/v1.0/hackers/john@ucmerced.edu
+```
+
+##### Response
+```js
+{ deleted: true }
+```
 
  
 ## Contributing
