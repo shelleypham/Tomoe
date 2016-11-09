@@ -10,14 +10,14 @@ class user{
   assign(){
     return {
       _key:utilities.createKey([4,6,3]),
-      username:this.username,
+      email:this.email,
       password:this.password,
     }
   }
 
   get(){
     return {
-      username:this.username,
+      email:this.email,
     }
   }
 
@@ -29,9 +29,9 @@ class user{
   }
 
   save(db, collection, resolve, reject){
-    // check if username already exists
+    // check if email already exists
     let user = this.assign();
-    this.findByUsername(db, collection, function(user){
+    this.findByEmail(db, collection, function(user){
       if(user){
           reject("user exists");
       } else {
@@ -48,7 +48,7 @@ class user{
   }
 
   destroy(db, collection, resolve, reject){
-    this.findByUsername(db, collection, function(user){
+    this.findByEmail(db, collection, function(user){
       if(user){
         collection.removeByExample(user);
       } else {
@@ -58,9 +58,9 @@ class user{
   }
 
   update(db, collection, resolve, reject){
-    // check if username already exists
+    // check if email already exists
     let updated_user_data = this.get();
-    this.findByUsername(db, collection, function(user){
+    this.findByEmail(db, collection, function(user){
       if(user){
         collection.update(user, updated_user_data).then(
           meta => {
@@ -76,18 +76,18 @@ class user{
     }, reject(error))
   }
 
-  static findByUsername(db, collection, username_optional, resolve, reject){
-    let username = (username_optional) username_optional ? this.username;
+  static findById(db, collection, id_optional, resolve, reject){
+    let id = (id_optional) ? id_optional : this._id;
 
     db.query(aql`
         FOR u IN ${collection.name}
-          FILTER u.username == ${username}
+          FILTER u._id == ${id}
           RETURN u
     `)
     .then(cursor => {
       cursor.all()
           .then(users => {
-            if(users && users[0] && users[0].username){
+            if(users && users[0] && users[0].email){
               resolve(users[0]);
             } else {
               resolve(false);
@@ -105,7 +105,7 @@ class user{
   }
 
   static findByEmail(db, collection, email_optional, resolve, reject){
-    let email = (email_optional) email_optional ? this.email;
+    let email = (email_optional) ? email_optional : this.email;
 
     db.query(aql`
         FOR u IN ${collection.name}

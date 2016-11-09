@@ -3,7 +3,7 @@ const utilities = require('../api/tools/util.js');
 const async = require('async');
 const default_db_uri = "http://127.0.0.1:8529";
 const Database = require('arangojs').Database;
-const admin = require('../api/tools/users.js');
+const admin = require('../api/tools/users.js').admin;
 const package = require('../package.json');
 let mode = "test"; // defaults to dev enironment
 let db; // database as a clobal variable

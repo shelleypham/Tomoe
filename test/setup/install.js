@@ -6,18 +6,19 @@ module.exports = function(assert, request, should){
 
     // setup class
     let test_InstallerPackage = {
-      username:utilities.createKey([5]).key,
+      email:utilities.createKey([5]).key + "@gmail.com",
       temp_password:utilities.createKey([4]).key,
       hackathon_name:utilities.createKey([2]).key,
     }
 
-    let installer = new install.installerPackage(test_InstallerPackage.username);
+    let installer = new install.installerPackage(test_InstallerPackage.email);
 
     describe('Class InstallerPackage', function() {
+
       before(function(){
         describe('#constructor()', function() {
-          it('adds a username', function() {
-            assert.equal(test_InstallerPackage.username, installer.returnInstaller().username);
+          it('adds a email', function() {
+            assert.equal(test_InstallerPackage.email, installer.returnInstaller().email);
           });
         });
 
@@ -53,20 +54,17 @@ module.exports = function(assert, request, should){
 
       after(function() {
         describe('#assign()', function() {
-          let user = installer.assignUser();
+          let user = installer.assign();
 
           it('Returns a user', function() {
             should.exist(user._key);
-            should.exist(user.username);
+            should.exist(user.email);
             should.exist(user.password);
           });
         });
 
         describe('#save()', function() {
-          it('Saves a user to a databse', function() {
-            assert.equal(installer.returnInstaller().temp_password, null);
-
-          });
+          
         });
 
       });
