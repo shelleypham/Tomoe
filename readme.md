@@ -6,12 +6,11 @@
 
 Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor their applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this December.
 
-[Website](http://tomoe.hackmerced.com) |
-[Docs](http://tomoe.hackmerced.com/docs) |
-[Installation](http://tomoe.hackmerced.com/install) |
+[Website](http://hackmerced.com) |
+[Docs](#hackathon-application-management-api) |
+[Installation](#installation) |
 [HackMerced](http://hackmerced.com) |
-[Sponsor Us!](http://hackmerced.com/sponsor) |
-[Blog](https://blog.hackmerced.com/)
+[Sponsor Us!](http://hackmerced.com/sponsor) 
 
 # Table of Contents
 
