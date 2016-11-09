@@ -16,7 +16,7 @@ Tomoe is a scalable, open source API that allows Hackathon organizers to manage 
 
 - [**Features**](#features)
 - [**Installation**](#installation)
-- [**Documentation**](#features)
+- [**Documentation**](#documentation)
 - [**Resources and Tools**](#resources-and-tools)
 - [**Roadmap**](#roadmap)
 - [**Contributing**](#contributing)
