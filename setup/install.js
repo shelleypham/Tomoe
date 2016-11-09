@@ -4,7 +4,7 @@ const async = require('async');
 const default_db_uri = "http://127.0.0.1:8529";
 const Database = require('arangojs').Database;
 const admin = require('../api/tools/users.js').admin;
-const package = require('../package.json');
+const pack = require('../package.json');
 let mode = "test"; // defaults to dev enironment
 let db; // database as a clobal variable
 // list the names of databases
@@ -267,7 +267,7 @@ function doneInstall(){
     } else {
       const runType = (mode === "dev") ? "npm run dev" : "npm start";
       const notMode = (mode === "dev") ? "live" : "dev";
-      console.log(`Tomoe Server v${package.version} installed for ${mode}, type\n ${runType} \n to use the server in ${mode} mode. \n\n REMINDER: You will need to run this installer again to set up a ${notMode} version of this server!`);
+      console.log(`Tomoe Server v${pack.version} installed for ${mode}, type\n ${runType} \n to use the server in ${mode} mode. \n\n REMINDER: You will need to run this installer again to set up a ${notMode} version of this server!`);
     }
   });
 }
