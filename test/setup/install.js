@@ -51,7 +51,6 @@ module.exports = function(assert, request, should){
         });
       });
 
-
       after(function() {
         describe('#assign()', function() {
           let user = installer.assignUser();
