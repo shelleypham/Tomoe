@@ -4,6 +4,8 @@
 [ ![Codeship Status for HackMerced/Tomoe](https://codeship.com/projects/37a7fc80-886a-0134-ba24-069b35d31ada/status?branch=master)](https://codeship.com/projects/183931)
 [![Test Coverage](https://codeclimate.com/github/HackMerced/Tomoe/badges/coverage.svg)](https://codeclimate.com/github/HackMerced/Tomoe/coverage)
 
+** THIS PROJECT IS PRE-RELEASE AND CURRENTLY DOES NOT WORK IN ENTIRETY **
+
 Tomoe is a scalable, open source API that allows Hackathon organizers to manage and monitor their applicants and staff. Tomoe was built for HackMerced's application management but has been extended and open-sourced for everyone. Tomoe is still in development and will be available for use this December.
 
 [Website](http://tomoe.hackmerced.com) |
