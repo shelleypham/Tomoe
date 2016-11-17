@@ -1,6 +1,9 @@
 // Test if database installs properly
 const install = require("../../setup/install.js");
 const utilities = require("../../api/tools/util.js");
+const Database = require('arangojs').Database;
+const db = new Database(process.env.DB_URI);
+      db.useDatabase("dev_tomoe_admin");
 
 module.exports = function(assert, request, should){
 
@@ -19,13 +22,6 @@ module.exports = function(assert, request, should){
         describe('#constructor()', function() {
           it('adds a email', function() {
             assert.equal(test_InstallerPackage.email, installer.returnInstaller().email);
-          });
-        });
-
-        describe('#addTempPassword()', function() {
-          it('Adds a temporary password', function() {
-            installer.addTempPassword(test_InstallerPackage.temp_password)
-            assert.equal(test_InstallerPackage.temp_password, installer.returnInstaller().temp_password);
           });
         });
 
@@ -64,12 +60,22 @@ module.exports = function(assert, request, should){
         });
 
         describe('#save()', function() {
-          
-        });
+          it('Saves a user', function() {
+            installer.save(db, db.collection('users'), installer, function(){
+              installer.findByEmail(db, db.collection('users'), user.email, function(user_ret){
+                assert.equal(user_ret.email, user.email);
+              }, function(err){
+                assert.equal(true, false);
+                throw err;
+              });
+            }, function(err){
+              assert.equal(true, false);
+              throw err;
+            });
+          });
+          });
+
 
       });
-
-
-
     });
 };

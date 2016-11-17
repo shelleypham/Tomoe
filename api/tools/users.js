@@ -28,53 +28,7 @@ class user{
     this.temp_password = null; // sets any temp password to none
   }
 
-  save(db, collection, resolve, reject){
-    // check if email already exists
-    let user = this.assign();
-    this.findByEmail(db, collection, function(user){
-      if(user){
-          reject("user exists");
-      } else {
-        collection.save(user).then(
-          meta => {
-            resolve(meta);
-          },
-          err => {
-            reject(err);
-          }
-        );
-      }
-    }, reject(err));
-  }
 
-  destroy(db, collection, resolve, reject){
-    this.findByEmail(db, collection, function(user){
-      if(user){
-        collection.removeByExample(user);
-      } else {
-        reject("no user found");
-      }
-    }, reject(err));
-  }
-
-  update(db, collection, resolve, reject){
-    // check if email already exists
-    let updated_user_data = this.get();
-    this.findByEmail(db, collection, function(user){
-      if(user){
-        collection.update(user, updated_user_data).then(
-          meta => {
-            resolve(meta);
-          },
-          err => {
-            reject(err);
-          }
-        );
-      } else {
-        reject("no user found")
-      }
-    }, reject(error))
-  }
 
   static findById(db, collection, id_optional, resolve, reject){
     let id = (id_optional) ? id_optional : this._id;
@@ -122,14 +76,71 @@ class user{
             }
           },
           err => {
+            console.log(err)
             reject(err);
           }
         );
       },
       err => {
+        console.log(err)
         reject(err);
       }
     )
+  }
+
+  save(db, collection, user_pack, resolve, reject){
+    // check if email already exists
+    let new_user = user_pack.assign();
+
+    user.findByEmail(db, collection, function(user){
+      if(user){
+          reject("user exists");
+      } else {
+        collection.save(new_user).then(
+          meta => {
+            resolve(meta);
+          },
+          err => {
+            reject(err);
+          }
+        );
+      }
+    }, function(err){
+      reject(err);
+    });
+  }
+
+  destroy(db, collection, resolve, reject){
+    this.findByEmail(db, collection, function(user){
+      if(user){
+        collection.removeByExample(user);
+      } else {
+        reject("no user found");
+      }
+    }, function(err){
+      reject(err);
+    });
+  }
+
+  update(db, collection, resolve, reject){
+    // check if email already exists
+    let updated_user_data = this.get();
+    this.findByEmail(db, collection, function(user){
+      if(user){
+        collection.update(user, updated_user_data).then(
+          meta => {
+            resolve(meta);
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        reject("no user found")
+      }
+    }, function(err){
+      reject(err);
+    });
   }
 
 }

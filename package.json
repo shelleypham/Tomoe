@@ -4,10 +4,11 @@
   "description": "Centralized API user platform for Hackathons",
   "main": "production.js",
   "scripts": {
-    "setup": "node ./setup/init.js",
+    "setup": "node ./setup/init.js live",
+    "setup-dev": "node ./setup/init.js dev",
     "test": "mocha",
-    "start": "node production.js",
-    "dev": "node development.js"
+    "start": "node index.js live",
+    "dev": "node index.js dev"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,7 @@
     "supertest": "^1.2.0"
   },
   "dependencies": {
-    "arangojs": "^5.0.3",
+    "arangojs": "^5.2.0",
     "async": "^1.3.0",
     "body-parser": "^1.13.1",
     "chron": "0.0.4",
@@ -44,6 +45,7 @@
     "mongodb": "^2.0.45",
     "mongojs": "^1.4.0",
     "morgan": "^1.6.0",
+    "pg": "^6.1.0",
     "readline-sync": "^1.4.5",
     "request": "^2.58.0",
     "sendgrid": "^1.8.0",

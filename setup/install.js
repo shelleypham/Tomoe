@@ -1,18 +1,14 @@
 const readlineSync = require('readline-sync');
 const utilities = require('../api/tools/util.js');
 const async = require('async');
-const default_db_uri = "http://127.0.0.1:8529";
+const default_db_uri = "http://root:@127.0.0.1:8000";
 const Database = require('arangojs').Database;
 const admin = require('../api/tools/users.js').admin;
 const pack = require('../package.json');
-let mode = "test"; // defaults to dev enironment
+let mode = "dev"; // defaults to dev enironment
 let db; // database as a clobal variable
 // list the names of databases
 const Database_Names_List = {
-  test:{
-    admin:"test_tomoe_admin",
-    hackathon:"test_tomoe_hacks"
-  },
   dev:{
     admin:"dev_tomoe_admin",
     hackathon:"dev_tomoe_hacks"
@@ -35,9 +31,6 @@ class installerPackage extends admin{
     this.hackathon_name = null;
   }
 
-  addTempPassword(temp_password){
-    this.temp_password = temp_password;
-  }
 
   // so we can set up the hackathon in the meta-db so we can refer to it later
   addHackathon(hackathon_name){
@@ -57,7 +50,9 @@ class installerPackage extends admin{
 
 
 // welcome
-function startInstall(){
+function startInstall(mode_insert){
+  mode = mode_insert;
+
   const introText = `Hello there! Welcome to Tomoe, a universal api-server for user management at Hackathons!\n\nThis is a little inbuilt installer that will help you set up your own Tomoe server!\n\n`
 
   console.log(introText);
@@ -72,12 +67,8 @@ function startInstall(){
 
 // functions
 function setMode(modeOverride){
-  const newmode = readlineSync.keyInSelect(["live", "dev"], 'Which mode are you installing this server for?');
-        mode = (modeOverride) ? modeOverride : mode;
-
   Database_Names = Database_Names_List[mode]; // update database names
-
-    //setDBURI();
+  setDBURI();
 }
 
 function setDBURI(){
@@ -94,8 +85,7 @@ function setDBURI(){
 // Functions
 function checkIfTomoeInstanceInstalled(){
   db.listDatabases().then(names => {
-
-      if(names.indexOf("tomoe_admin") !== -1 || names.indexOf("tomoe_hacks") !== -1 ){
+      if(names.indexOf("tomoe_admin") !== -1 || names.indexOf("tomoe_hacks") !== -1 || names.indexOf("dev_tomoe_hacks") !== -1 || names.indexOf("dev_tomoe_admin") !== -1 ){
         let ans = readlineSync.question(`There already seems to be an instance of Tomoe installed - do you want to drop your databases and start a new server?\n (y/n):`);
         if(ans === "y"){
           clearDB(() => {
@@ -107,6 +97,9 @@ function checkIfTomoeInstanceInstalled(){
       } else {
         askUserForEmail(); // create user then actually create database
       }
+  },
+  err => {
+    console.error(`Failed to lookup databasees:${err}\n Ending Install`);
   });
 }
 
@@ -114,41 +107,33 @@ function checkIfTomoeInstanceInstalled(){
 function askUserForEmail(){
   let email = readlineSync.question(`We will now create an account for the admin panel, please enter your email address.\n`);
   let valid_email = utilities.validate.email(email);
+
+
   if(valid_email){
     let pack = new installerPackage(email);
-
     askUserForPassword(pack);
   } else {
-    console.log(`Please enter a valid email!\n`);
+    console.log(`\nPlease enter a valid email!`);
     askUserForEmail();
   }
 }
 
 function askUserForPassword(pack){
-  let password = readlineSync.questionNewPassword(`Please enter a password for the account: ${email}.\n`);
+  let password = readlineSync.questionNewPassword(`Please enter a password for the account: ${pack.email}.\n`, {min:6, max:25});
+
   if(password){
-    pack.addTempPassword(password);
-    confirmUserPassword(pack);
-  } else {
-    console.log(`Please enter a valid password!\n`);
-    askUserForPassword(pack);
-  }
-}
-
-function confirmUserPassword(pack){
-  let confirm_password = readlineSync.questionNewPassword(`\nPlease re-enter your password to verify.\n`);
-  if(pack.returnInstaller().temp_password === confirm_password){
-
-    pack.setPassword(confirm_password);
+    pack.setPassword(password);
 
     askHackathonName(pack);
   } else {
-    console.log(`You entered your password wrong!\n`);
+    console.log(`\nPlease enter a valid password!`);
     askUserForPassword(pack);
   }
 }
 
-function askHackathonName(){
+
+
+function askHackathonName(pack){
   let hackathon = readlineSync.question(`Last question, what's your Hackathon's name?\n`);
 
   if(hackathon){
@@ -178,7 +163,9 @@ function installServerSoftware(pack){
       users.create().then(
         () => {
           // create admin files
-          pack.save(users, function(){
+
+          pack.save(db, users, pack, function(){
+
             hackathonInstaller(pack);
           }, function(err){
             console.error('Failed to save document:', err)
@@ -279,13 +266,13 @@ exports.installerPackage = installerPackage;
 exports.checkIfTomoeInstanceInstalled = checkIfTomoeInstanceInstalled;
 exports.askUserForEmail = askUserForEmail;
 exports.askUserForPassword = askUserForPassword;
-exports.confirmUserPassword = confirmUserPassword;
 exports.askHackathonName = askHackathonName;
 exports.installServerSoftware = installServerSoftware;
 exports.clearDB = clearDB;
 exports.installFailed = installFailed;
 exports.doneInstall = doneInstall;
 exports.setMode = setMode;
+exports.db = db;
 exports.getDatabaseNames = function(){
   return Database_Names;
 }
