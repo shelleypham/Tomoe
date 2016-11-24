@@ -60,7 +60,22 @@ module.exports = function(app, db){
         res.send("User can't be updated: " + err, 500);
       })
     } else{
-      
+
+    }
+  });
+
+  app.delete('/hackers/user_input', (req, res) => {
+    const user_input = req.param.user_input;
+    const isEmail = utilities.validate.email(user_input);
+
+    if (isEmail){
+      user.destroy(db, collection, function(found_user) {
+        res.send(found_user, 200);
+      }, function(err){
+        res.send("User can't be deleted: " + err, 500);
+      })
+    } else{
+
     }
   });
 
