@@ -88,9 +88,9 @@ class user{
     )
   }
 
-  save(db, collection, user_pack, resolve, reject){
+  save(db, collection, resolve, reject){
     // check if email already exists
-    let new_user = user_pack.assign();
+    let new_user = this.assign();
 
     user.findByEmail(db, collection, function(user){
       if(user){
