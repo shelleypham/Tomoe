@@ -64,7 +64,7 @@ module.exports = function(app, db){
     }
   });
 
-  app.delete('/hackers/user_input', (req, res) => {
+  app.delete('/hackers/:user_input', (req, res) => {
     const user_input = req.param.user_input;
     const isEmail = utilities.validate.email(user_input);
 
